@@ -1,0 +1,26 @@
+<div class="employee-container">
+  <h2>Employee Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact No</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (employee of employeesList; track $index) {
+        <tr>
+          <td>{{ employee.employeeName }}</td>
+          <td>{{ employee.contactNo }}</td>
+          <td>{{ employee.emailId }}</td>
+          <td>
+            <button class="update-btn" (click)="updateEmployee(employee.employeeId)">Update</button>
+            <button class="delete-btn" (click)="deleteEmployee(employee.employeeId)">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

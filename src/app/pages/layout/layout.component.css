@@ -1,0 +1,9 @@
+.layout-container {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  margin-left: 305px;
+  border-radius: 10px;
+}

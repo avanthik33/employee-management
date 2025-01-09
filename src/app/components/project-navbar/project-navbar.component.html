@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <ul>
+    <li>
+      <a id="create" [routerLink]="['addProject']" routerLinkActive="active-link">Create Project</a>
+    </li>
+    <li>
+      <a [routerLink]="['./']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">view All
+        Project</a>
+    </li>
+  </ul>
+</nav>

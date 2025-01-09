@@ -1,0 +1,51 @@
+<div class="form-container">
+  <h2>Project Details Form</h2>
+
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="projectName">Project Name</label>
+      <input id="projectName" formControlName="projectName" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="clientName">Client Name</label>
+      <input id="clientName" formControlName="clientName" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input id="startDate" formControlName="startDate" type="date" />
+
+    </div>
+
+    <div class="form-group">
+      <label for="leadByEmpId">Lead By </label>
+      <select formControlName="leadByEmpId">
+        <option value="">Select Employee</option>
+        @for (employee of employeesList(); track $index) {
+        <option value={{employee.employeeId}}>{{employee.employeeName}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="contactPerson">Contact Person</label>
+      <input id="contactPerson" formControlName="contactPerson" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="contactNo">Contact Number</label>
+      <input id="contactNo" formControlName="contactNo" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="emailId">Email ID</label>
+      <input id="emailId" formControlName="emailId" type="email" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="formData.invalid">Add Project</button>
+    </div>
+  </form>
+</div>

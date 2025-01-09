@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <ul>
+    <li>
+      <a id="create" [routerLink]="['addEmployee']" routerLinkActive="active-link">Create Employee</a>
+    </li>
+    <li>
+      <a [routerLink]="['./']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">view All
+        Employees</a>
+    </li>
+  </ul>
+</nav>

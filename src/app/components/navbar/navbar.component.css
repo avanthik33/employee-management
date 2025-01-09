@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap");
+
+nav {
+  margin: 0px 0px;
+  width: 300px;
+  height: 100%;
+  background-color: #343a40;
+  position: fixed;
+  border-radius: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: block;
+  margin: 10px 5px 0 30px;
+}
+
+nav a {
+  display: block;
+  border: none;
+  padding: 10px;
+  width: 85%;
+  border-radius: 5px;
+  text-align: left;
+  color: white;
+  font-size: large;
+  margin-left: 10px;
+  text-decoration: none;
+  background-color: inherit;
+}
+
+nav a:hover {
+  background-color: white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+nav a.active-link {
+  background-color: #ffffff;
+  color: black;
+  font-weight: 700;
+}
+
+nav svg {
+  margin-right: 2px;
+}
+
+#nav-heading {
+  margin: 20px 30px;
+  width: 95%;
+  color: #fffefd;
+  font-family: "Spicy Rice", serif;
+  font-weight: 400;
+  font-style: normal;
+}
