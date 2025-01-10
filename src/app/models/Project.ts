@@ -9,23 +9,23 @@ export class Project implements IProject {
   contactPerson: string;
   contactNo: string;
   emailId: string;
-  constructor(
+  constructor({
     projectId = 0,
     projectName = '',
     clientName = '',
     startDate = new Date(),
-    leadBy = 0,
-    contactPer = '',
+    leadByEmpId = 0,
+    contactPerson = '',
     contactNo = '',
-    email = ''
-  ) {
+    emailId = '',
+  }: Partial<IProject>) {
     this.projectId = projectId;
     this.projectName = projectName;
     this.clientName = clientName;
     this.startDate = startDate;
-    this.leadByEmpId = leadBy;
-    this.contactPerson = contactPer;
+    this.leadByEmpId = leadByEmpId;
+    this.contactPerson = contactPerson;
     this.contactNo = contactNo;
-    this.emailId = email;
+    this.emailId = emailId;
   }
 }

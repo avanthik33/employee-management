@@ -1,32 +1,90 @@
 <div class="project-container">
   <h2>Project Details</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Client Name</th>
-        <th>Start Date</th>
-        <th>Lead</th>
-        <th>Email</th>
-        <th>Action</th>
+  @if(isLoading()){
+  <h1>Loading</h1>
+  }@else {
+  <ng-content>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Client Name</th>
+          <th>Start Date</th>
+          <th>Lead</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (project of projectList(); track $index) {
+        <tr>
+          <td>{{ project.projectName }}</td>
+          <td>{{ project.clientName }}</td>
+          <td>{{ project.startDate | date :'fullDate' }}</td>
+          <td>{{ getEmpNameById(project.leadByEmpId) }}</td>
+          <td>{{ project.emailId ? project.emailId : "Unavailable" }}</td>
+          <td>
+            <button class="update-btn" (click)="handleUpdateProject(project)">Update</button>
+            <button class="delete-btn" (click)="handleDeleteProject(project.projectId)">Delete</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </ng-content>
+  }
+</div>
 
-      </tr>
-    </thead>
-    <tbody>
-      @for (project of projectList(); track $index) {
-      <tr>
-        <td>{{ project.projectName }}</td>
-        <td>{{ project.clientName }}</td>
-        <td>{{ project.startDate }}</td>
-        <td>{{ project.leadByEmpId }}</td>
-        <td>{{ project.emailId }}</td>
-        
-        <td>
-          <button class="update-btn" (click)="updateProject(project.projectId)">Update</button>
-          <button class="delete-btn" (click)="deleteProject(project.projectId)">Delete</button>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+
+<div class="popupModel" #updateModel>
+  <div class="modal-content">
+    <h2>Edit Project</h2>
+
+    <form (submit)="updateProject()">
+
+      <div class="form-group">
+        <label for="name">Project Name</label>
+        <input id="name" [(ngModel)]="formData.projectName" name="projectName" type="text" required />
+      </div>
+
+      <div class="form-group">
+        <label for="clientName">Client Name</label>
+        <input id="clientName" [(ngModel)]="formData.clientName" name="clientName" type="text" required />
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input id="startDate" [(ngModel)]="formData.startDate" name="startDate" type="date" required />
+      </div>
+
+      <div class="form-group">
+        <select [(ngModel)]="formData.leadByEmpId" name="leadByEmpId" required>
+          <option value="">Select Employee</option>
+          @for (employee of employeeList(); track $index) {
+          <option value={{employee.employeeId}}>{{employee.employeeName}}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="contactPerson">Contact Person</label>
+        <input id="contactPerson" [(ngModel)]="formData.contactPerson" name="contactPerson" type="text" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" [(ngModel)]="formData.emailId" type="email" name="emailId" required />
+      </div>
+
+      <div class="form-group">
+        <label for="contactNo">Contact No</label>
+        <input id="contactNo" [(ngModel)]="formData.contactNo" name="contactNo" type="text" required />
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit">Update</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>

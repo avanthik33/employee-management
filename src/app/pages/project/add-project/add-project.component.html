@@ -6,17 +6,31 @@
     <div class="form-group">
       <label for="projectName">Project Name</label>
       <input id="projectName" formControlName="projectName" type="text" />
+      @if( formData.controls['projectName'].touched && formData.controls['projectName'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="clientName">Client Name</label>
       <input id="clientName" formControlName="clientName" type="text" />
+      @if( formData.controls['clientName'].touched && formData.controls['clientName'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="startDate">Start Date</label>
       <input id="startDate" formControlName="startDate" type="date" />
-
+      @if( formData.controls['startDate'].touched && formData.controls['startDate'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
@@ -27,25 +41,56 @@
         <option value={{employee.employeeId}}>{{employee.employeeName}}</option>
         }
       </select>
+      @if( formData.controls['leadByEmpId'].touched && formData.controls['leadByEmpId'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="contactPerson">Contact Person</label>
       <input id="contactPerson" formControlName="contactPerson" type="text" />
+      @if( formData.controls['contactPerson'].touched && formData.controls['contactPerson'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="contactNo">Contact Number</label>
       <input id="contactNo" formControlName="contactNo" type="text" />
+      @if( formData.controls['contactNo'].touched && formData.controls['contactNo'].invalid ){
+      <div class="error">
+        <span>*Please fill 10 digit No.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="emailId">Email ID</label>
       <input id="emailId" formControlName="emailId" type="email" />
+      @if( formData.controls['emailId'].touched && formData.controls['emailId'].invalid ){
+      <div class="error">
+        <span>*Please fill valid Email address.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
-      <button type="submit" [disabled]="formData.invalid">Add Project</button>
+      <button [disabled]="formData.invalid  || isLoading()" class="btn-login">
+        @if(isLoading()){
+        <ng-container>
+          loading
+        </ng-container>
+        }@else {
+        <ng-container>
+          Add Project
+        </ng-container>
+        }
+      </button>
     </div>
+
   </form>
 </div>

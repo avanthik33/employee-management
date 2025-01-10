@@ -59,3 +59,15 @@ nav svg {
   font-weight: 400;
   font-style: normal;
 }
+
+.logout-button {
+  padding: 10px 40px;
+  margin-left: 50px;
+  margin-top: 20px;
+  background-color: rgb(119, 26, 26);
+  color: white;
+  cursor: pointer;
+  border: 2px solid #9c6e6e
+  
+}
+

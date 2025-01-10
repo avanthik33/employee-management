@@ -17,30 +17,35 @@ import { IEmployee } from '../../../interfaces';
 })
 export class AddProjectComponent implements OnInit {
   formData: FormGroup = new FormGroup({
-    projectId: new FormControl(0),
     projectName: new FormControl(null, Validators.required),
     clientName: new FormControl(null, Validators.required),
     startDate: new FormControl(null, Validators.required),
     leadByEmpId: new FormControl(null, Validators.required),
     contactPerson: new FormControl(null, Validators.required),
-    contactNo: new FormControl(null, Validators.required),
-    emailId: new FormControl(null, Validators.required),
+    contactNo: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^\d{10}$/),
+    ]),
+    emailId: new FormControl(null, [Validators.required, Validators.email]),
   });
 
   apiService: ApiService = inject(ApiService);
   employeesList = signal<IEmployee[]>([]);
+  isLoading = signal<boolean>(false);
 
   onSubmit() {
-    const projectObj = new Project(
-      this.formData.get('projectName')?.value,
-      this.formData.get('clientName')?.value,
-      this.formData.get('startDate')?.value,
-      this.formData.get('leadByEmpId')?.value,
-      this.formData.get('contactPerson')?.value,
-      this.formData.get('contactNo')?.value,
-      this.formData.get('emailId')?.value
-    );
-    this.apiService.CreateProject(projectObj);
+    const projectObj = new Project({
+      projectName: this.formData.get('projectName')?.value,
+      clientName: this.formData.get('clientName')?.value,
+      startDate: this.formData.get('startDate')?.value,
+      leadByEmpId: this.formData.get('leadByEmpId')?.value,
+      contactPerson: this.formData.get('contactPerson')?.value,
+      contactNo: this.formData.get('contactNo')?.value,
+      emailId: this.formData.get('emailId')?.value,
+    });
+    console.log(projectObj);
+    this.apiService.CreateProject(projectObj, this.isLoading);
+    this.formData.reset();
   }
 
   fetchAllEmployee() {

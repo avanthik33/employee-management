@@ -7,16 +7,31 @@
     <div class="form-group">
       <label for="employeeName">Employee Name</label>
       <input type="text" id="employeeName" formControlName="employeeName" required>
+      @if( formData.controls['employeeName'].touched && formData.controls['employeeName'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="contactNo">Contact No</label>
       <input type="text" id="contactNo" formControlName="contactNo" required>
+      @if( formData.controls['contactNo'].touched && formData.controls['contactNo'].invalid ){
+      <div class="error">
+        <span>*Please fill 10 digit No.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="emailId">Email ID</label>
       <input type="email" id="emailId" formControlName="emailId" required>
+      @if( formData.controls['emailId'].touched && formData.controls['emailId'].invalid ){
+      <div class="error">
+        <span>*Please fill valid Email address.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
@@ -27,6 +42,7 @@
         <option value="{{department.departmentId}}">{{ department.departmentName }}</option>
         }
       </select>
+
     </div>
 
     <div class="form-group">
@@ -51,16 +67,35 @@
           <label for="female">Female</label>
         </div>
       </div>
+      @if( formData.controls['gender'].touched && formData.controls['gender'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password" required>
+      @if( formData.controls['password'].touched && formData.controls['password'].invalid ){
+      <div class="error">
+        <span>*This field is required.</span>
+      </div>
+      }
     </div>
 
     <div class="form-group">
-      <button type="submit" [disabled]="formData.invalid">ADD Employee</button>
+      <button [disabled]="formData.invalid  || isLoading()" class="btn-login">
+        @if(isLoading()){
+        <ng-container>
+          loading
+        </ng-container>
+        }@else {
+        <ng-container>
+          ADD Employee
+        </ng-container>
+        }
+      </button>
     </div>
-
   </form>
 </div>

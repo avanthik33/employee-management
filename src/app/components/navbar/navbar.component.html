@@ -1,22 +1,16 @@
-<nav>
+<nav class="nav-container">
   <h2 id="nav-heading">Employee Management</h2>
   <hr>
-  <ul>
+  <ul class="nav-list">
     <li>
       <a [routerLink]="['dashboard']" routerLinkActive="active-link">Home</a>
     </li>
     <li>
-      <a routerLink="employee" routerLinkActive="active-link">
-        Employee</a>
+      <a routerLink="employee" routerLinkActive="active-link">Employee</a>
     </li>
     <li>
       <a [routerLink]="['project']" routerLinkActive="active-link">Projects</a>
     </li>
-    <li>
-      <a [routerLink]="['#']" routerLinkActive="active-link">#</a>
-    </li>
-    <li>
-      <a [routerLink]="['#']" routerLinkActive="active-link">#</a>
-    </li>
+    <button class="logout-button" (click)="handleLogout()">Logout</button>
   </ul>
 </nav>

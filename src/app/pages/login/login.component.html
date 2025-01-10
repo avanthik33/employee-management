@@ -17,8 +17,17 @@
           <label for="password">Password</label>
           <input type="password" name="password" formControlName="password" placeholder="Password">
         </div>
-
-        <button class="btn-login">Login</button>
+        <button [disabled]="isLoading() || formData.invalid" class="btn-login">
+          @if(isLoading()){
+          <ng-container>
+            loading
+          </ng-container>
+          }@else {
+          <ng-container>
+            Login
+          </ng-container>
+          }
+        </button>
       </div>
     </form>
   </div>

@@ -112,3 +112,9 @@ body * {
 input.ng-touched.ng-invalid {
   border: 2px solid red;
 }
+
+
+button:disabled {
+  background-color: #ccc;
+  cursor:default;
+}

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -35,6 +35,7 @@ export class AddEmployeeComponent implements OnInit {
   apiServices: ApiService = inject(ApiService);
   parentDepartmentList: IParentDep[] = [];
   childDepartmentList: IChildDep[] = [];
+  isLoading = signal<boolean>(false);
 
   handleGetParentDep() {
     this.apiServices.GetAllParentDepartments().subscribe({
@@ -72,7 +73,7 @@ export class AddEmployeeComponent implements OnInit {
       password: this.formData.get('password')?.value,
       gender: this.formData.get('gender')?.value,
     });
-    this.apiServices.CreateEmployee(employeeObj);
+    this.apiServices.CreateEmployee(employeeObj, this.isLoading);
     this.formData.reset();
   }
 

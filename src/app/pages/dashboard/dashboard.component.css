@@ -1,5 +1,69 @@
-.head{
-  color:rgb(61, 61, 61) ;
+.head {
+  color: rgb(61, 61, 61);
   border-bottom: 3px solid black;
   width: 150vh;
+}
+
+.dashboard-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.stats-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 22%;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a73e8;
+}
+
+.additional-section {
+  margin-top: 30px;
+}
+
+.activity-feed {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  padding: 10px;
+  background-color: #fff;
+  margin: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }

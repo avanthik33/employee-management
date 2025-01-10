@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, CanActivateFn } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -8,6 +8,9 @@ import { ViewAllEmployeesComponent } from './pages/employee/view-all-employees/v
 import { ProjectComponent } from './pages/project/project.component';
 import { AddProjectComponent } from './pages/project/add-project/add-project.component';
 import { ViewAllProjectComponent } from './pages/project/view-all-project/view-all-project.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { authGuardGuard } from './guards/auth-guard.guard';
+import { redirectIfLoggedGuard } from './guards/redirect-if-logged.guard';
 
 export const routes: Routes = [
   {
@@ -19,10 +22,12 @@ export const routes: Routes = [
     path: 'login',
     title: 'login page',
     component: LoginComponent,
+    canActivate: [redirectIfLoggedGuard],
   },
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [authGuardGuard],
     children: [
       {
         path: 'dashboard',
@@ -38,6 +43,16 @@ export const routes: Routes = [
             path: '',
             title: 'ViewAllemployee',
             component: ViewAllEmployeesComponent,
+            canDeactivate: [
+              (component: ViewAllProjectComponent) => {
+                if (component.hasUnsavedChanges) {
+                  return confirm(
+                    'You have unsaved changes. Do you really want to leave?'
+                  );
+                }
+                return true;
+              },
+            ],
           },
           {
             path: 'addEmployee',
@@ -55,6 +70,16 @@ export const routes: Routes = [
             path: '',
             title: 'viewProjects',
             component: ViewAllProjectComponent,
+            canDeactivate: [
+              (component: ViewAllProjectComponent) => {
+                if (component.hasUnsavedChanges) {
+                  return confirm(
+                    'You have unsaved changes. Do you really want to leave?'
+                  );
+                }
+                return true;
+              },
+            ],
           },
           {
             path: 'addProject',
@@ -64,5 +89,10 @@ export const routes: Routes = [
         ],
       },
     ],
+  },
+  {
+    path: '**',
+    title: 'not found',
+    component: NotFoundComponent,
   },
 ];
