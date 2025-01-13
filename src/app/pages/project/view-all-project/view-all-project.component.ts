@@ -1,6 +1,5 @@
 import {
   Component,
-  effect,
   ElementRef,
   inject,
   OnInit,

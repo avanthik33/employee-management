@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EmployeeComponent } from "../employee/employee.component";
 
 @Component({
   selector: 'app-dashboard',
