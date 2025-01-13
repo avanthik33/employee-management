@@ -29,6 +29,7 @@ export class LoginComponent {
     if (!this.formData.invalid) {
       this.isLoading.set(true);
       this.apiService.Login(this.formData.value, this.isLoading);
+      this.formData.reset();
     } else {
       alert('null or invalid input!');
     }
